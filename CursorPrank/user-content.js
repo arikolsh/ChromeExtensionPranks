@@ -8,4 +8,4 @@ function createImageUrl(cursorStyle) {
     return 'url(' + imgPath + '), auto';
 }
 
-changeCursorStyle("div","images/balls.png");
+changeCursorStyle("p","images/balls.png");
