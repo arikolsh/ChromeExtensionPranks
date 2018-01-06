@@ -1,0 +1,38 @@
+{
+  "manifest_version": 2,
+  //only 2 will work
+
+  "name": "AdBlock",
+  "description": "No more annoying ads !",
+  "version": "1.0",
+  "browser_action": {
+    "default_icon": "images/adblock.png",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "64": "images/adblock.png",
+    "128": "images/adblock.png"
+  },
+  "permissions": [
+    "activeTab",
+    //see url of current tab
+    "storage"
+    // ability to access storage of browser
+  ],
+  "content_scripts": [
+    //list of scripts that run with access to DOM
+    {
+      //this script should run on every single page
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "jquery/jquery.min.js",
+        "user-content.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    "images/balls.png"
+  ]
+}
