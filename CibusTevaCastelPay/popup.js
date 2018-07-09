@@ -12,7 +12,7 @@ function run() {
 
 function doProcess(lastPayDate) {
     var dateStr = lastPayDate == undefined ? "never" : toDateStr(lastPayDate);
-    document.getElementById('lastPayInput').placeholder = dateStr;
+    document.getElementById('lastPayInput').value = dateStr;
     if (isDayPassed(lastPayDate)) {
         console.log("day has passed since last payment on " + dateStr);
         if (new Date().getHours() >= 19) {
@@ -33,14 +33,17 @@ function toDateStr(date) {
 }
 
 // Save provided settings using the Chrome extension storage API.
-async function savePaymentDate() {
+function savePaymentDate() {
     var date = getCurrentDate();
     chrome.storage.sync.set({ 'lastPayDate': date }, function () {
         console.log('saved pay date: ' + date);
     });
-    //animate new date
+    animateNewDate(date);
+}
+
+async function animateNewDate(date) {
     var dateStr = toDateStr(date);
-    var oldDateStr = document.getElementById('lastPayInput').placeholder;
+    var oldDateStr = document.getElementById('lastPayInput').value;
     for (let i = 0; i < Math.min(dateStr.length, oldDateStr.length); i++) {
         await sleep(150);
         var tmp = dateStr.substring(0, i) + oldDateStr.substring(i);
@@ -52,19 +55,6 @@ async function savePaymentDate() {
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-$("input[placeholder]").each(function () {
-
-    var $input = $(this);
-    // wrap the input with a label
-    $input.wrap("<label class='placeholder'>");
-    // append a span to the label
-    $input.parent().append("<span>" + $input.attr('placeholder') + "</span>");
-    // and finally remove the placeholder attribute
-    $input.attr('placeholder', '');
-
-});
-
 
 function isDayPassed(datePrev) {
     if (datePrev == null) { return true; }
