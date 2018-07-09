@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "Teva Castel Cibus Pay",
+  "description": "pay teva castel with cibus",
+  "version": "1.0",
+  "browser_action": {
+    "default_icon": "images/logo.png",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "64": "images/logo.png",
+    "128": "images/logo.png"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "jquery/jquery.min.js",
+        "user-content.js"
+      ]
+    }
+  ]
+}

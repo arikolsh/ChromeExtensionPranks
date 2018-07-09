@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>chrome extension tutorial</title>
+    <style type="text/css">
+        body {
+            margin: 0px;
+            white-space: nowrap;
+        }
+
+        label.placeholder {
+            position: relative;
+        }
+
+        label.placeholder span {
+            -webkit-transition: opacity 250ms;
+            -moz-transition: opacity 250ms;
+            -o-transition: opacity 250ms;
+            -ms-transition: opacity 250ms;
+            transition: opacity 250ms;
+            position: absolute;
+            left: 5px;
+            top: 2px;
+            font-size: 12px;
+            color: grey;
+        }
+
+        label.placeholder input+span {
+            opacity: 0;
+        }
+
+        label.placeholder input:invalid+span {
+            opacity: 1;
+        }
+    </style>
+    <script src="jquery/jquery.min.js"></script>
+    <script src="popup.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+    <div>
+        Last Payment:
+        <input id="lastPayInput" placeholder="" disabled="disabled" type="text" name="lastPay">
+    </div>
+</body>
+
+</html>
